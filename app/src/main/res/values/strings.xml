@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Donations</string>
+    <string name="ic_logo_title">Make it Better</string>
+
+    <string name="facebook">Facebook</string>
+    <string name="google">Google +</string>
+
+    <string name="sign_in_text">Sign in with</string>
+    <string name="make_it_better">Make it better</string>
 </resources>

@@ -4,6 +4,12 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+repositories {
+    maven {
+        url 'https://maven.google.com'
+    }
+}
+
 android {
 
     compileSdkVersion 27
@@ -25,6 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -35,4 +42,12 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.0'
+
+    implementation 'com.android.support:support-media-compat:27.1.1'
+    implementation 'com.android.support:animated-vector-drawable:27.1.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
