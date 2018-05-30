@@ -26,8 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private val TAG: String = "LoginActivity"
 
     //Request Codes
-    private val FACEBOOK_LOG_IN_CODE = 1
-    private val GOOGLE_LOG_IN_CODE = 2
+    private val GOOGLE_LOG_IN_CODE = 1
 
     //Init views
     private lateinit var facebookSignInButton: Button
@@ -146,4 +145,5 @@ class LoginActivity : AppCompatActivity() {
                 })
     }
 }
+
 

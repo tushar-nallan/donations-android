@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tramsun.donations">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
