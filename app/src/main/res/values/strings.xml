@@ -7,4 +7,8 @@
 
     <string name="sign_in_text">Sign in with</string>
     <string name="make_it_better">Make it better</string>
+
+    <string name="google_web_client_id">85870896675-pojppkrtlk3gv47ki23qsi2vajdt5945.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">224908348093866</string>
+    <string name="fb_login_protocol_scheme">12bcd0629b087441b8bd10ae21603fcf</string>
 </resources>
