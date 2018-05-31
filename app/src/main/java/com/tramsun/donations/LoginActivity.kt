@@ -19,6 +19,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
+import timber.log.Timber
 import java.util.*
 
 class LoginActivity : AppCompatActivity() {
@@ -45,6 +46,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //Instantiate different Timber logging trees based on Debug or Release modes
+        if (BuildConfig.DEBUG) {
+            Timber.plant(object : Timber.DebugTree() {
+                override fun createStackElementTag(element: StackTraceElement): String {
+                    return super.createStackElementTag(element) + ":" + element.lineNumber
+                }
+            })
+        } else {
+            Timber.plant(CrashReportingTree())
+        }
+
         // Initiate firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -58,16 +70,16 @@ class LoginActivity : AppCompatActivity() {
         //Facebook Callback registration
         LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
-                Log.d(TAG, "Login Success")
+                Timber.d("Login Success")
                 handleFacebookAccessToken(result.accessToken)
             }
 
             override fun onCancel() {
-                Log.d(TAG, "Login Cancelled")
+                Timber.d("Login Cancelled")
             }
 
             override fun onError(error: FacebookException?) {
-                Log.d(TAG, "Login Failed")
+                Timber.d("Login Failed")
             }
         })
 
@@ -85,20 +97,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleFacebookAccessToken(token: AccessToken) {
-
-        Log.d(TAG, "facebookAccessToken" + token)
-
+        Timber.d("facebookAccessToken %s", token.token)
         val facebookCredentials: AuthCredential = FacebookAuthProvider.getCredential(token.token)
         firebaseAuth!!.signInWithCredential(facebookCredentials).addOnCompleteListener(this@LoginActivity) { facebookSignInTask ->
-            //                NgoListActivity
             if (facebookSignInTask.isSuccessful) {
-                Log.d(TAG, "Facebook SignIn Success; Current User" + firebaseAuth!!.currentUser)
+                Timber.d("Facebook SignIn Success; Current User is %s", firebaseAuth!!.currentUser!!.displayName)
                 intent = Intent(this@LoginActivity, NgoListActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             } else {
-                Log.e(TAG, "Firebase authentication with Facebook SignIn credentials Failed", facebookSignInTask.exception)
+                Timber.e(facebookSignInTask.exception, "Firebase authentication with Facebook SignIn credentials Failed")
             }
         }
     }
@@ -118,7 +127,7 @@ class LoginActivity : AppCompatActivity() {
                 val googleAccount: GoogleSignInAccount = signInGoogleTask.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(googleAccount)
             } catch (e: ApiException) {
-                Log.e(TAG, "Failed to login google", e)
+                Timber.e(e, "Failed to login google")
             }
         } else {
             callbackManager?.onActivityResult(requestCode, resultCode, data)
@@ -132,18 +141,16 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this@LoginActivity, object : OnCompleteListener<AuthResult> {
                     override fun onComplete(googleSignInTask: Task<AuthResult>) {
                         if (googleSignInTask.isSuccessful) {
-                            Log.d(TAG, "Google SignIn Success; Current User" + firebaseAuth!!.currentUser)
+                            Timber.d("Google SignIn Success; Current User is %s", firebaseAuth!!.currentUser!!.displayName)
                             intent = Intent(this@LoginActivity, NgoListActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent)
                             finish()
                         } else {
-                            Log.e(TAG, "Firebase authentication with Google SignIn credentials Failed", googleSignInTask.exception)
+                            Timber.e(googleSignInTask.exception, "Firebase authentication with Google SignIn credentials Failed")
                         }
                     }
                 })
     }
 }
-
-

@@ -77,6 +77,9 @@ dependencies {
     implementation 'com.android.support:animated-vector-drawable:27.1.1'
 
     implementation "com.squareup.picasso:picasso:2.4.0"
+
+    //Dependency for Timber logging API
+    implementation 'com.jakewharton.timber:timber:4.5.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
