@@ -3,7 +3,6 @@ package com.tramsun.donations
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.Button
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -21,6 +20,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 import timber.log.Timber
 import java.util.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,10 +28,6 @@ class LoginActivity : AppCompatActivity() {
 
     //Request Codes
     private val GOOGLE_LOG_IN_CODE = 1
-
-    //Init views
-    private lateinit var facebookSignInButton: Button
-    private lateinit var googleSignInButton: Button
 
     //Facebook Callback manager
     private var callbackManager: CallbackManager? = null
@@ -63,10 +59,6 @@ class LoginActivity : AppCompatActivity() {
         //Initiate Callback Manager
         callbackManager = CallbackManager.Factory.create()
 
-        //Get sign in button ids
-        facebookSignInButton = findViewById(R.id.facebook_login)
-        googleSignInButton = findViewById(R.id.google_login)
-
         //Facebook Callback registration
         LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
@@ -84,10 +76,10 @@ class LoginActivity : AppCompatActivity() {
         })
 
         //Listener for Facebook sign in button
-        facebookSignInButton.setOnClickListener { LoginManager.getInstance().logInWithReadPermissions(this@LoginActivity, Arrays.asList("email", "public_profile")) }
+        facebook_login.setOnClickListener { LoginManager.getInstance().logInWithReadPermissions(this@LoginActivity, Arrays.asList("email", "public_profile")) }
 
         //Listener for Google Sign In button
-        googleSignInButton.setOnClickListener { googleSignIn() }
+        google_login.setOnClickListener { googleSignIn() }
 
         //Configure Google Sign In
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
