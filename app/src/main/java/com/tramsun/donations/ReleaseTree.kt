@@ -3,7 +3,7 @@ package com.tramsun.donations
 import android.util.Log.*
 import timber.log.Timber
 
-class CrashReportingTree : Timber.Tree() {
+class ReleaseTree : Timber.Tree() {
     override fun log(priority: Int, tag: String, message: String, t: Throwable) {
         if (priority == VERBOSE || priority == DEBUG) {
             return

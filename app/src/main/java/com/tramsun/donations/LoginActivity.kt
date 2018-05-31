@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         } else {
-            Timber.plant(CrashReportingTree())
+            Timber.plant(ReleaseTree())
         }
 
         // Initiate firebase auth
