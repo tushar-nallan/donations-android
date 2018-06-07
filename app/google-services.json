@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "85870896675",
+    "firebase_url": "https://donationssocialauth-9b1d5.firebaseio.com",
+    "project_id": "donationssocialauth-9b1d5",
+    "storage_bucket": "donationssocialauth-9b1d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85870896675:android:3ecaaa55971c8953",
+        "android_client_info": {
+          "package_name": "com.tramsun.donations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85870896675-pojppkrtlk3gv47ki23qsi2vajdt5945.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "85870896675-pojppkrtlk3gv47ki23qsi2vajdt5945.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEhSNe9_JJSUfjZFmzHGVI_hug8R4E4is"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

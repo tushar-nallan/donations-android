@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="loginButton_margin_left">36dp</dimen>
+    <dimen name="loginButton_margin_right">36dp</dimen>
+
+    <dimen name="logo_width">74dp</dimen>
+    <dimen name="logo_height">88dp</dimen>
+    <dimen name="logoText_width">165dp</dimen>
+    <dimen name="logoText_height">36dp</dimen>
+
+    <dimen name="logo_margin_top">80dp</dimen>
+    <dimen name="logo_margin_top_landscape">36dp</dimen>
+    <dimen name="logoText_margin_top">6dp</dimen>
+    <dimen name="button_margin">20dp</dimen>
+    <dimen name="googleButton_margin_bottom">50dp</dimen>
+    <dimen name="googleButton_margin_bottom_landscape">36dp</dimen>
+
+    <dimen name="login_button_width">256dp</dimen>
+    <dimen name="login_button_height">42dp</dimen>
+</resources>

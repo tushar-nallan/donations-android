@@ -4,9 +4,28 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+repositories {
+    google()
+}
+
 android {
 
     compileSdkVersion 27
+    signingConfigs {
+        release {
+            storeFile file("keys/donations-app-release.jks")
+            storePassword "qwe123"
+            keyAlias "donations-app"
+            keyPassword "qwe123"
+        }
+
+        debug {
+            storeFile file("keys/donations-app-debug.jks")
+            storePassword "qwe123"
+            keyAlias "donations-app"
+            keyPassword "qwe123"
+        }
+    }
 
     defaultConfig {
         applicationId "com.tramsun.donations"
@@ -19,12 +38,20 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
+
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            signingConfig signingConfigs.debug
+        }
     }
+
 }
 
 dependencies {
@@ -35,4 +62,25 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
+
+    //Dependency for Google Sign In
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
+
+    //Dependency for Facebook Sign In
+    implementation 'com.facebook.android:facebook-login:4.33.0'
+
+    implementation 'com.android.support:support-media-compat:27.1.1'
+    implementation 'com.android.support:animated-vector-drawable:27.1.1'
+
+    implementation "com.squareup.picasso:picasso:2.4.0"
+
+    //Dependency for Timber logging API
+    implementation 'com.jakewharton.timber:timber:4.7.0'
 }
+
+apply plugin : 'com.google.gms.google-services'
+apply plugin : 'kotlin-android-extensions'

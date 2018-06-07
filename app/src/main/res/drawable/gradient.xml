@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <corners android:radius="8dp"/>
+<!--gradient for login buttons-->
+    <gradient
+        android:endColor="#96E6A1"
+        android:startColor="#D4FC79"
+        android:angle="135"/>
+</shape>
