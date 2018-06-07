@@ -4,7 +4,7 @@ import android.util.Log.*
 import timber.log.Timber
 
 class ReleaseTree : Timber.Tree() {
-    override fun log(priority: Int, tag: String, message: String, t: Throwable) {
+    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
         if (priority == VERBOSE || priority == DEBUG) {
             return
         }

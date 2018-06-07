@@ -3,7 +3,6 @@ package com.tramsun.donations
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -44,11 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Instantiate different Timber logging trees based on Debug or Release modes
         if (BuildConfig.DEBUG) {
-            Timber.plant(object : Timber.DebugTree() {
-                override fun createStackElementTag(element: StackTraceElement): String {
-                    return super.createStackElementTag(element) + ":" + element.lineNumber
-                }
-            })
+            Timber.plant(Timber.DebugTree())
         } else {
             Timber.plant(ReleaseTree())
         }
@@ -76,7 +71,11 @@ class LoginActivity : AppCompatActivity() {
         })
 
         //Listener for Facebook sign in button
-        facebook_login.setOnClickListener { LoginManager.getInstance().logInWithReadPermissions(this@LoginActivity, Arrays.asList("email", "public_profile")) }
+        facebook_login.setOnClickListener {
+
+
+            LoginManager.getInstance().logInWithReadPermissions(this@LoginActivity, Arrays.asList("email", "public_profile"))
+        }
 
         //Listener for Google Sign In button
         google_login.setOnClickListener { googleSignIn() }
